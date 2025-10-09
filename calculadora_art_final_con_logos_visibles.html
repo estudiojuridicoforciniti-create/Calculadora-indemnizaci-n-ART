@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora ART — Estudio Forciniti & Asociados</title>
+  <style>
+    :root{
+      --bg:#f6f8fb; --card:#ffffff; --ink:#0e1726; --muted:#637081; --line:#e5e9f2;
+      --accent:#0b6bff; --accent-dark:#084ec1;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:860px;margin:0 auto;padding:28px}
+    .hero{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+    .logo{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#0b6bff,#7aa8ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;box-shadow:0 6px 18px rgba(11,107,255,.25)}
+    .brand h1{margin:0;font-size:26px;letter-spacing:-.3px}
+    .brand h1 a:hover{text-decoration:underline}
+    .brand .sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
+    .badge{display:inline-flex;gap:6px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef5ff;border:1px solid #cfe1ff;font-size:13px;color:#0b3d9a;transition:transform .1s ease, background .2s ease}
+    .badge:hover{background:#e7f0ff;transform:scale(1.02)}
+    .stars{display:flex;gap:2px;align-items:center}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(16,24,40,.06)}
+    label{display:block;margin:14px 0 8px;font-weight:700;font-size:15px}
+    input,select{width:100%;padding:16px;border:1.5px solid #cdd5df;border-radius:14px;font-size:18px;background:#fff}
+    input::placeholder{color:#9aa3af}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:820px){.row{grid-template-columns:1fr}}
+    .btn{display:block;width:100%;margin-top:18px;padding:18px;border:0;border-radius:16px;cursor:pointer;font-weight:900;font-size:18px;background:#0b6bff;color:#fff;box-shadow:0 8px 20px rgba(11,107,255,.25)}
+    .btn:hover{background:#084ec1}
+    .btn:active{transform:translateY(1px)}
+    .result{margin-top:18px;padding:20px;background:#f0f5ff;border:1px solid #d7e7ff;border-radius:16px}
+    .value{font-weight:900;font-size:30px;letter-spacing:-.3px}
+    .note{font-size:13px;color:var(--muted);margin-top:8px}
+    .detail{margin-top:6px;font-size:14px}
+    .err{color:#b00020;font-size:13px;margin-top:6px;display:none}
+    .chipRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{background:#f3f4f7;border:1px solid #e1e4ea;border-radius:999px;padding:8px 12px;font-size:12px}
+    /* Floating WhatsApp (simple text button) */
+    .floatWA{position:fixed;right:18px;bottom:18px;z-index:9999;text-decoration:none;background:#25D366;color:#fff;padding:14px 16px;border-radius:999px;display:flex;gap:8px;align-items:center;font-weight:900;box-shadow:0 10px 24px rgba(37,211,102,.35)}
+    .floatWA:hover{filter:brightness(.95)}
+    /* Mini contact form */
+    .miniForm{margin-top:18px;padding:16px;border:1px dashed #cfd6e3;border-radius:14px;background:#fcfdff}
+    .miniRow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:820px){.miniRow{grid-template-columns:1fr}}
+    .miniActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .miniBtn{flex:1 1 260px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:12px;border-radius:12px;border:1px solid var(--line);background:#e7fbe9;color:#0b5b2e;font-weight:800}
+    /* Footer socials with official logos visible */
+    .footer{margin-top:22px;text-align:center;color:#6b7482}
+    .footer .tiny{font-size:12px;margin-bottom:8px}
+    .socials{display:flex;gap:16px;justify-content:center;align-items:center}
+    .social{display:inline-flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px;border-radius:999px;border:1px solid #e6e9f2;background:#fff;font-weight:700;transition:transform .1s ease}
+    .social:hover{transform:scale(1.03)}
+    .social svg{width:18px;height:18px;display:block}
+    .social span{color:#0e1726;font-size:14px}
+  </style>
+</head>
+<body>
+  <a class="floatWA" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20quiero%20asesoramiento%20sobre%20mi%20indemnizaci%C3%B3n%20ART.">
+    💬 WhatsApp
+  </a>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="logo">EF</div>
+      <div class="brand">
+        <h1><a href="https://estudiojuridicoforciniti.com">Estudio Forciniti &amp; Asociados</a></h1>
+        <div class="sub">Especialistas en accidentes de trabajo y enfermedades profesionales • Equipo legal &amp; médicos legistas</div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <a class="badge" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20necesito%20asesoramiento%20legal%20por%20ART.">💼 Equipo legal</a>
+      <a class="badge" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20quiero%20consulta%20con%20m%C3%A9dico%20legista%20por%20ART.">🩺 Médicos legistas</a>
+      <a class="badge" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20soy%20docente%20y%20tengo%20enfermedad%20de%20la%20voz%2C%20necesito%20ayuda.">🎓 Docentes • Enfermedades de la voz</a>
+      <a class="badge" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20quiero%20saber%20c%C3%B3mo%20cobrar%20mi%20ART.">✅ Solo cobramos si vos cobrás</a>
+      <a class="badge" href="https://wa.me/5491158970604?text=Hola%20%F0%9F%91%8B%20vengo%20por%20recomendaci%C3%B3n%2C%20vi%20que%20tienen%20%2B3000%20casos%20exitosos."><span class="stars">⭐️⭐️⭐️⭐️⭐️</span> +3000 casos exitosos</a>
+    </div>
+
+    <div class="card">
+      <h2 style="margin:0 0 10px;font-size:20px">Calculadora de Indemnización (ART)</h2>
+
+      <div class="row">
+        <div>
+          <label for="edad">Edad</label>
+          <input id="edad" type="number" inputmode="numeric" placeholder="Ej: 38">
+          <div id="e_edad" class="err">Ingresá una edad válida (18 a 70).</div>
+        </div>
+        <div>
+          <label for="ip">% de incapacidad</label>
+          <input id="ip" type="number" inputmode="decimal" step="0.01" placeholder="Ej: 12.5">
+          <div id="e_ip" class="err">Ingresá un porcentaje entre 1 y 100.</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="ibm">Ingreso Base Mensual (IBM)</label>
+          <input id="ibm" type="number" inputmode="decimal" placeholder="Ej: 500000">
+          <div id="e_ibm" class="err">Ingresá un IBM válido mayor que 0.</div>
+        </div>
+        <div>
+          <label for="lugar">Lugar de accidente</label>
+          <select id="lugar">
+            <option value="trabajo" selected>En el trabajo</option>
+            <option value="itinere">In itinere</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="btn" class="btn">Calcular indemnización</button>
+
+      <div class="result" id="resultBox">
+        <div>Resultado estimado</div>
+        <div id="total" class="value">—</div>
+        <div id="detalle" class="detail">—</div>
+        <div class="chipRow">
+          <span class="chip">Fórmula: 53 × IBM × (IP/100) × (65/Edad)</span>
+          <span id="chipEscenario" class="chip">Escenario: —</span>
+        </div>
+        <div class="note">Orientativo. No contempla actualizaciones, topes, RIPTE, intereses ni particularidades del caso.</div>
+      </div>
+
+      <div class="miniForm">
+        <div style="font-weight:900;margin-bottom:6px">Recibí asesoramiento de profesionales especialistas en ART</div>
+        <div class="miniRow">
+          <input id="c_nombre" type="text" placeholder="Nombre y apellido">
+          <input id="c_tel" type="tel" placeholder="Teléfono">
+        </div>
+        <div class="miniActions">
+          <a id="miniWA" class="miniBtn" href="#">💬 Enviar consulta por WhatsApp</a>
+        </div>
+        <div class="note">Tu mensaje incluirá los datos del cálculo para agilizar la respuesta.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="tiny">⭐️ Seguinos en nuestras redes para más información y casos reales</div>
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/estudioforciniti" aria-label="Instagram Estudio Forciniti">
+          <!-- Instagram official-style logo (gradient square + white camera) -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="igGrad2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f58529"/>
+                <stop offset="30%" stop-color="#dd2a7b"/>
+                <stop offset="60%" stop-color="#8134af"/>
+                <stop offset="100%" stop-color="#515bd4"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#igGrad2)"/>
+            <circle cx="12" cy="12" r="5" fill="none" stroke="#fff" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1.2" fill="#fff"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <a class="social" href="https://www.facebook.com/estudioforciniti" aria-label="Facebook Estudio Forciniti">
+          <!-- Facebook official blue with white f -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="#1877F2"/>
+            <path d="M14 8h2V5.5h-2c-2.2 0-3.5 1.3-3.5 3.4V12H8v2.5h2.5V21H13v-6.5h2.3L16 12h-3v-2c0-1 .4-2 1.9-2z" fill="#fff"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const $ = id => document.getElementById(id);
+      const fmtARS = n => isFinite(n) ? n.toLocaleString('es-AR',{style:'currency',currency:'ARS',minimumFractionDigits:2,maximumFractionDigits:2}) : "—";
+
+      function validate(){
+        let ok=true;
+        const edad=parseFloat($('edad').value);
+        const ip=parseFloat($('ip').value);
+        const ibm=parseFloat($('ibm').value);
+        ['e_edad','e_ip','e_ibm'].forEach(id=>$(id).style.display='none');
+        if(!(edad>=18 && edad<=70)){ $('e_edad').style.display='block'; ok=false; }
+        if(!(ip>0 && ip<=100)){ $('e_ip').style.display='block'; ok=false; }
+        if(!(ibm>0)){ $('e_ibm').style.display='block'; ok=false; }
+        return ok;
+      }
+
+      function calcularYMostrar(scrollIntoView=false){
+        if(!validate()) return;
+        const edad=parseFloat($('edad').value);
+        const ip=parseFloat($('ip').value);
+        const ibm=parseFloat($('ibm').value);
+        const lugar=$('lugar').value;
+        let total = 53 * ibm * (ip/100) * (65/edad);
+        if(lugar === 'trabajo'){ total *= 1.20; }
+        $('total').textContent = fmtARS(total);
+        $('detalle').textContent = (lugar === 'trabajo')
+          ? 'Se aplicó +20% por accidente en el trabajo.'
+          : 'Sin adicional del 20% (in itinere).';
+        $('chipEscenario').textContent = (lugar === 'trabajo') ? 'Escenario: En el trabajo (+20%)' : 'Escenario: In itinere';
+        if(scrollIntoView){ $('resultBox').scrollIntoView({behavior:'smooth', block:'center'}); }
+      }
+
+      $('btn').addEventListener('click', function(){
+        calcularYMostrar(true);
+      });
+
+      function human(n){ return n ? Number(n).toLocaleString('es-AR') : '—'; }
+
+      function buildWaHref(){
+        const edad=($('edad').value||'').trim();
+        const ip=($('ip').value||'').trim();
+        const ibm=($('ibm').value||'').trim();
+        const lugar=$('lugar').value==='trabajo'?'En el trabajo':'In itinere';
+        const total=$('total').textContent||'—';
+        const nombre=($('c_nombre').value||'').trim();
+        const tel=($('c_tel').value||'').trim();
+
+        const text =
+`Hola! 👋 Quiero asesoramiento sobre mi cálculo ART.
+
+📄 *Datos del cálculo*
+• 🧑‍💼 Edad: ${edad? edad+' años':'—'}
+• ♿️ % incapacidad: ${ip? ip+' %':'—'}
+• 💵 IBM: ${ibm? human(ibm):'—'}
+• 📍 Lugar: ${lugar}
+• 🧮 Resultado estimado: ${total||'—'}
+
+👤 *Mis datos de contacto*
+• 🙍 Nombre: ${nombre||'—'}
+• 📞 Teléfono: ${tel||'—'}
+
+Gracias! 🙏`;
+
+        return `https://wa.me/5491158970604?text=${encodeURIComponent(text)}`;
+      }
+
+      $('miniWA').addEventListener('click', function(e){
+        e.preventDefault();
+        calcularYMostrar(false);
+        location.href = buildWaHref(); // misma pestaña
+      });
+    })();
+  </script>
+</body>
+</html>
